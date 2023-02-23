@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+{{License}}
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+    <menu>
+        <add id="COZYVISION_Smsalert::smsalert" title="SMS Alert" module="COZYVISION_Smsalert" sortOrder="11" resource="COZYVISION_Smsalert::smsalert"/>
+        <add id="COZYVISION_Smsalert::smsalert_head" title="Settings" module="COZYVISION_Smsalert" sortOrder="40"
+             parent="COZYVISION_Smsalert::smsalert" resource="COZYVISION_Smsalert::smsalert"/>
+        <add id="COZYVISION_Smsalert::config" title="Configuration" module="COZYVISION_Smsalert" sortOrder="50"
+             action="adminhtml/system_config/edit/section/cozyvision_smsalert_configuration"
+             resource="COZYVISION_Smsalert::smsalert" parent="COZYVISION_Smsalert::smsalert_head" />
+    </menu>
+</config>

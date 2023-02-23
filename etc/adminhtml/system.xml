@@ -1,0 +1,259 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Config/etc/system_file.xsd">
+    <system>
+        <tab id="cozyvision_smsalert" sortOrder="2000">
+            <label>Sms Alert</label>
+        </tab>
+        <section id="cozyvision_smsalert_configuration" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+
+            <label>Basic Configuration</label>
+            <tab>cozyvision_smsalert</tab>
+            <resource>COZYVISION_Smsalert::sms</resource>
+            <group id="basic_configuration" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label><![CDATA[Basic Configuration&nbsp;&nbsp;<i>Setting API Account</i>]]></label>
+                <field id="smsalert_username" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enter SMS Alert Username</label>
+                    <comment>Enter your SMS Alert Username</comment>
+                    <tooltip>Your Username must be the same as your SMS Alert Username</tooltip>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="smsalert_password" type="password" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enter SMS Alert Password</label>
+                    <comment>Enter your SMS Alert Password</comment>
+                    <tooltip>Your password must be the same as your SMS Alert password</tooltip>
+                    <validate>required-entry</validate>
+                </field>
+				<field id="smsalert_new_order_sender_id" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enter the Sender ID</label>
+                    <comment>Enter the Sender ID Of SMS Alert</comment>
+                    <tooltip>You can enter upto 6 characters</tooltip>
+                    <validate>required-entry validate-length minimum-length-1 maximum-length-6</validate>
+                    <depends><field id="smsalert_new_order_enabled">1</field></depends>
+                </field>
+				
+				
+				<field id="smsalert_country" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Choose Country</label>
+                    <comment>Choose Country for sending sms</comment>
+                    <source_model>COZYVISION\Smsalert\Model\Config\Source\Country</source_model>
+                    <validate>required-entry</validate>
+                </field>
+				
+				
+            </group>
+        </section>
+        <section id="cozyvision_smsalert_orders" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Customer Notifications</label>
+            <tab>cozyvision_smsalert</tab>
+            <resource>COZYVISION_Smsalert::sms</resource>
+            <group id="new_order" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>When a New Order is Placed</label>
+                <field id="smsalert_new_order_enabled" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Customer Notification</label>
+                    <comment>This option will send SMS when an Order is Placed</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="smsalert_new_order_message" type="textarea" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enter the Message</label>
+                    <comment>You can use {storeName} for Store Name, {firstname} for Firstname, {middlename} for Middlename, {lastname} for Lastname, {countryCode} for Country Code, {totalPrice} for Price, {customerEmail} for EmailAddress and {orderId} for Order Number.</comment>
+                    <validate>required-entry validate-length minimum-length-1 maximum-length-918</validate>
+                    <tooltip>Your Message Content</tooltip>
+                    <depends><field id="smsalert_new_order_enabled">1</field></depends>
+                </field>
+
+
+            </group>
+            <group id="hold_order" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>When Order is Hold</label>
+                <field id="smsalert_hold_order_enabled" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Customer Notification</label>
+                    <comment>This option will send SMS when an Order is hold</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="smsalert_hold_order_message" type="textarea" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enter the Message</label>
+                    <comment>You can use {storeName} for Store Name, {firstname} for Firstname, {middlename} for Middlename, {lastname} for Lastname, {countryCode} for Country Code, {totalPrice} for Price, {customerEmail} for EmailAddress and {orderId} for Order Number.</comment>
+                    <validate>required-entry validate-length minimum-length-1 maximum-length-918</validate>
+                    <tooltip>Your Message Content</tooltip>
+                    <depends><field id="smsalert_hold_order_enabled">1</field></depends>
+                </field>
+
+
+            </group>
+            <group id="unhold_order" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>When Order is Unhold</label>
+                <field id="smsalert_unhold_order_enabled" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Customer Notification</label>
+                    <comment>This option will send SMS when an Order is Unhold</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="smsalert_unhold_order_message" type="textarea" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enter the Message</label>
+                    <comment>You can use {storeName} for Store Name, {firstname} for Firstname, {middlename} for Middlename, {lastname} for Lastname, {countryCode} for Country Code, {totalPrice} for Price, {customerEmail} for EmailAddress and {orderId} for Order Number.</comment>
+                    <validate>required-entry validate-length minimum-length-1 maximum-length-918</validate>
+                    <tooltip>Your Message Content,</tooltip>
+                    <depends><field id="smsalert_unhold_order_enabled">1</field></depends>
+                </field>
+
+
+            </group>
+            <group id="cancelled_order" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>When Order is Cancelled</label>
+                <field id="smsalert_cancelled_order_enabled" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Customer Notification</label>
+                    <comment>This option will send SMS when an Order is Cancelled</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="smsalert_cancelled_order_message" type="textarea" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enter the Message</label>
+                    <comment>You can  {storeName} for Store Name, {firstname} for Firstname, {middlename} for Middlename, {lastname} for Lastname, {countryCode} for Country Code, {totalPrice} for Price, {customerEmail} for EmailAddress and {orderId} for Order Number.</comment>
+                    <validate>required-entry validate-length minimum-length-1 maximum-length-918</validate>
+                    <tooltip>Your Message Content,</tooltip>
+                    <depends><field id="smsalert_cancelled_order_enabled">1</field></depends>
+                </field>
+            </group>
+            
+			<group id="invoiced_order" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>When Order is Invoiced</label>
+                <field id="smsalert_invoiced_order_enabled" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Customer Notification</label>
+                    <comment>This option will send SMS when an Order is Invoiced</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="smsalert_invoiced_order_message" type="textarea" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enter the Message</label>
+                    <comment>You can use {storeName} for Store Name, {firstname} for Firstname, {middlename} for Middlename, {lastname} for Lastname, {countryCode} for Country Code, {totalPrice} for Price, {customerEmail} for EmailAddress, {orderId} for Order Number and {invoiceNumber} for Invoice Number.</comment>
+                    <validate>required-entry validate-length minimum-length-1 maximum-length-918</validate>
+                    <tooltip>Your Message Content,</tooltip>
+                    <depends><field id="smsalert_invoiced_order_enabled">1</field></depends>
+                </field>
+            </group>
+			
+			<group id="shipped_order" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>When Order is Shipped</label>
+                <field id="smsalert_shipped_order_enabled" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Customer Notification</label>
+                    <comment>This option will send SMS when an Order is Shipped</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="smsalert_shipped_order_message" type="textarea" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enter the Message</label>
+                    <comment>You can use {storeName} for Store Name, {firstname} for Firstname, {middlename} for Middlename, {lastname} for Lastname, {countryCode} for Country Code, {totalPrice} for Price, {customerEmail} for EmailAddress and {orderId} for Order Number, {shipmentNumber} for Shipment Number and {trackingId} for tracking number and {carrierName} for Carrier name.</comment>
+                    <validate>required-entry validate-length minimum-length-1 maximum-length-918</validate>
+                    <tooltip>Your Message Content,</tooltip>
+                    <depends><field id="smsalert_shipped_order_enabled">1</field></depends>
+                </field>
+            </group>
+			
+			<group id="credit_memo" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Credit Memo</label>
+                <field id="smsalert_credit_memo_enabled" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Customer Notification</label>
+                    <comment>This option will send SMS when credit memo is added</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="smsalert_credit_memo_message" type="textarea" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enter the Message</label>
+                    <comment>You can use {storeName} for Store Name, {firstname} for Firstname, {middlename} for Middlename, {lastname} for Lastname, {countryCode} for Country Code, {totalPrice} for Price, {customerEmail} for EmailAddress, {orderId} for Order Number and {creditmemoNumber} for credit memo number.</comment>
+                    <validate>required-entry validate-length minimum-length-1 maximum-length-918</validate>
+                    <tooltip>Your Message Content,</tooltip>
+                    <depends><field id="smsalert_credit_memo_enabled">1</field></depends>
+                </field>
+            </group>
+			
+			<group id="customer_register" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>When Customer is registered</label>
+                <field id="smsalert_customer_register_enabled" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Customer Notification</label>
+                    <comment>This option will send SMS when customer is added</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="smsalert_customer_register_message" type="textarea" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enter the Message</label>
+                    <comment>You can use {firstname} for Firstname, {lastname} for Lastname, {email} for EmailAddress, {created_at} for Created At and {customer_id} for Customer Id.</comment>
+                    <validate>required-entry validate-length minimum-length-1 maximum-length-918</validate>
+                    <tooltip>Your Message Content,</tooltip>
+                    <depends><field id="smsalert_customer_register_enabled">1</field></depends>
+                </field>
+            </group>
+			
+			
+		</section>
+        <section id="cozyvision_smsalert_admins" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Admin Notifications</label>
+            <tab>cozyvision_smsalert</tab>
+            <resource>COZYVISION_Smsalert::sms</resource>
+            <group id="admin_configuration" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Admin Configuration</label>
+                <field id="smsalert_admin_enabled" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Admin Notifications</label>
+                    <comment>This option will send SMS to the admin when an Order is Placed</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="smsalert_admin_mobile" type="text" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Admin Mobile</label>
+                    <comment>Admin Mobile(s): Enter as many numbers as you like here, comma seperated if multiple e.g. 1171XXXXXX,80XXXXXXXX</comment>
+                    <depends><field id="smsalert_admin_enabled">1</field></depends>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="smsalert_new_order_admin_message" type="textarea" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enter the Message for New Order</label>
+                    <comment>You can use {storeName} for Store Name, {firstname} for Firstname, {middlename} for Middlename, {lastname} for Lastname, {countryCode} for Country Code, {totalPrice} for Price, {customerEmail} for EmailAddress and {orderId} for Order Number.</comment>
+                    <validate>validate-length minimum-length-1 maximum-length-918</validate>
+                    <tooltip>Your Message Content,</tooltip>
+                    <depends><field id="smsalert_admin_enabled">1</field></depends>
+                </field>
+                <field id="smsalert_hold_admin_message" type="textarea" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enter the Message for Order Hold</label>
+                    <comment>You can use {storeName} for Store Name, {firstname} for Firstname, {middlename} for Middlename, {lastname} for Lastname, {countryCode} for Country Code, {totalPrice} for Price, {customerEmail} for EmailAddress and {orderId} for Order Number.</comment>
+                    <validate>validate-length minimum-length-1 maximum-length-918</validate>
+                    <tooltip>Your Message Content,</tooltip>
+                    <depends><field id="smsalert_admin_enabled">1</field></depends>
+                </field>
+                <field id="smsalert_unhold_admin_message" type="textarea" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enter the Message for Order UnHold</label>
+                    <comment>You can use {storeName} for Store Name, {firstname} for Firstname, {middlename} for Middlename, {lastname} for Lastname, {countryCode} for Country Code, {totalPrice} for Price, {customerEmail} for EmailAddress and {orderId} for Order Number.</comment>
+                    <validate>validate-length minimum-length-1 maximum-length-918</validate>
+                    <tooltip>Your Message Content,</tooltip>
+                    <depends><field id="smsalert_admin_enabled">1</field></depends>
+                </field>
+                <field id="smsalert_cancelled_admin_message" type="textarea" sortOrder="35" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enter the Message for Order Cancelled</label>
+                    <comment>You can use {storeName} for Store Name, {firstname} for Firstname, {middlename} for Middlename, {lastname} for Lastname, {countryCode} for Country Code, {totalPrice} for Price, {customerEmail} for EmailAddress and {orderId} for Order Number.</comment>
+                    <validate>validate-length minimum-length-1 maximum-length-918</validate>
+                    <tooltip>Your Message Content,</tooltip>
+                    <depends><field id="smsalert_admin_enabled">1</field></depends>
+                </field>
+                <field id="smsalert_invoiced_admin_message" type="textarea" sortOrder="35" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enter the Message for Invoice Created</label>
+                    <comment>You can use {storeName} for Store Name, {firstname} for Firstname, {middlename} for Middlename, {lastname} for Lastname, {countryCode} for Country Code, {totalPrice} for Price, {customerEmail} for EmailAddress, {orderId} for Order Number and {invoiceNumber} for Invoice Number.</comment>
+                    <validate>validate-length minimum-length-1 maximum-length-918</validate>
+                    <tooltip>Your Message Content,</tooltip>
+                    <depends><field id="smsalert_admin_enabled">1</field></depends>
+                </field>
+                <field id="smsalert_register_admin_message" type="textarea" sortOrder="35" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enter the Message for Customer Registration</label>
+                    <comment>You can use {firstname} for Firstname, {lastname} for Lastname, {email} for EmailAddress, {created_at} for Created At and {customer_id} for Customer Id.</comment>
+                    <validate>validate-length minimum-length-1 maximum-length-918</validate>
+                    <tooltip>Your Message Content,</tooltip>
+                    <depends><field id="smsalert_admin_enabled">1</field></depends>
+                </field>
+				<field id="smsalert_shipped_admin_message" type="textarea" sortOrder="35" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enter the Message for Order Shipped</label>
+                    <comment>You can use {storeName} for Store Name, {firstname} for Firstname, {middlename} for Middlename, {lastname} for Lastname, {countryCode} for Country Code, {totalPrice} for Price, {customerEmail} for EmailAddress and {orderId} for Order Number, {shipmentNumber} for Shipment Number and {trackingId} for tracking number and {carrierName} for Carrier name.</comment>
+                    <validate>validate-length minimum-length-1 maximum-length-918</validate>
+                    <tooltip>Your Message Content,</tooltip>
+                    <depends><field id="smsalert_admin_enabled">1</field></depends>
+                </field>
+				<field id="smsalert_creditmemo_admin_message" type="textarea" sortOrder="35" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enter the Message for Credit Memo</label>
+                    <comment>You can use {storeName} for Store Name, {firstname} for Firstname, {middlename} for Middlename, {lastname} for Lastname, {countryCode} for Country Code, {totalPrice} for Price, {customerEmail} for EmailAddress, {orderId} for Order Number and {creditmemoNumber} for credit memo number.</comment>
+                    <validate>validate-length minimum-length-1 maximum-length-918</validate>
+                    <tooltip>Your Message Content,</tooltip>
+                    <depends><field id="smsalert_admin_enabled">1</field></depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

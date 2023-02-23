@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+	<!-- <event name="checkout_submit_all_after">
+        <observer name="cozyvision_smsalert_observer_new_order" instance="COZYVISION\Smsalert\Observer\NewOrder"/>
+    </event> -->
+	
+	<event name="sales_order_place_after">
+        <observer name="cozyvision_smsalert_observer_new_order" instance="COZYVISION\Smsalert\Observer\NewOrder"/>
+    </event>
+	
+	
+	<!-- <event name="order_cancel_after">
+        <observer name="cozyvision_smsalert_observer_order_cancelled" instance="COZYVISION\Smsalert\Observer\OrderCancelled"/>
+    </event> -->
+
+	<event name="sales_order_shipment_save_after">
+		<observer name="cozyvision_smsalert_observer_order_shipped" instance="COZYVISION\Smsalert\Observer\OrderShipped"/>
+	</event>
+	
+    <event name="sales_order_save_after">
+        <observer name="cozyvision_smsalert_observer_order_cancelled" instance="COZYVISION\Smsalert\Observer\OrderCancelled"/> 
+        <observer name="cozyvision_smsalert_observer_order_hold" instance="COZYVISION\Smsalert\Observer\OrderHold"/>
+        <observer name="cozyvision_smsalert_observer_order_un_hold" instance="COZYVISION\Smsalert\Observer\OrderUnHold"/>
+    </event>
+    <event name="sales_order_invoice_save_after">
+        <observer name="cozyvision_smsalert_observer_invoice_create" instance="COZYVISION\Smsalert\Observer\InvoiceCreate"/>
+    </event>
+	 <event name="sales_order_creditmemo_save_after">
+        <observer name="cozyvision_smsalert_observer_creditmemo" instance="COZYVISION\Smsalert\Observer\CreditMemo"/>
+    </event>
+    <event name="customer_register_success">
+        <observer name="cozyvision_smsalert_observer_register_success" instance="COZYVISION\Smsalert\Observer\Registration"/>
+    </event>
+</config>

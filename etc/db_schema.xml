@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+<table name="cozyvision_smsalert" resource="default" engine="innodb" comment="SMS Alert Table">
+    <column xsi:type="int" name="id" unsigned="true" nullable="false" identity="true" comment="ID"/>
+	<constraint xsi:type="primary" referenceId="PRIMARY">
+        <column name="id"/>
+    </constraint>
+    <column xsi:type="text" name="sender_id" nullable="false" default="" comment="Sender ID"/>
+	<column xsi:type="text" name="destination" nullable="false" default="" comment="Mobile Number"/>
+	<column xsi:type="text" name="message" nullable="false" default="" comment="SMS Text"/>
+	<column xsi:type="datetime" name="sent_at" nullable="false" comment="Sent At"/>
+	<column xsi:type="text" name="status" nullable="false" default="0" comment="Status"/>
+</table>
+</schema>
